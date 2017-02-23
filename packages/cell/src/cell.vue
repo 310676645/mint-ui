@@ -179,7 +179,8 @@ export default {
         position: absolute;
         height: 100%;
         left: 0;
-        transform: translate3d(-100%, 0, 0);
+        line-height: 100%;
+        transform: translate3d(0, 0, 0);
       }
 
       @descendent right {

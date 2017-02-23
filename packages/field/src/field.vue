@@ -7,6 +7,13 @@
       'is-textarea': type === 'textarea',
       'is-nolabel': !label
     }]">
+    <template
+      v-if="required"
+      slot="left">
+      <span class="mint-field-required">
+        *
+      </span>
+    </template>
     <textarea
       @change="$emit('change', currentValue)"
       ref="textarea"
@@ -66,6 +73,7 @@ if (process.env.NODE_ENV === 'component') {
  * @param {string} [disabled] - disabled
  * @param {string} [readonly] - readonly
  * @param {string} [state] - 表单校验状态样式，接受 error, warning, success
+ * @param {boolean} [required] - 是否为必填项,默认为false
  *
  * @example
  * <mt-field v-model="value" label="用户名"></mt-field>
@@ -103,7 +111,11 @@ export default {
       default: 'default'
     },
     value: {},
-    attr: Object
+    attr: Object,
+    required: {
+      type: Boolean,
+      default: false
+    }
   },
 
   components: { XCell },
@@ -188,7 +200,12 @@ export default {
         font-size: inherit;
         width: 100%;
       }
-
+      @descendent required {
+        color: red;
+        position: absolute;
+        top: 50%;
+        margin-top: -4px;
+      }
       @descendent clear {
         opacity: .2;
       }
